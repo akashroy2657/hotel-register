@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        function registerClick(){
+            document.getElementById("form").style.display="block";
+            var name=document.getElementById("person").value;
+            var indate=document.getElementById("checkin").value;
+            var outdate=document.getElementById("checkout").value;
+            var peaple=document.getElementById("peaple").value;
+            //Advance Amount
+            var price=parseInt(document.getElementById("amount").value);
+
+            //room type
+            var room1=document.getElementById("deluxroom");
+            var room2=document.getElementById("suiteroom");
+
+            //room logic
+            if (price<1000){
+                document.getElementById("error").innerHTML="The minimum Amount must be Rs.1000 !" 
+                document.getElementById("form").style.display="none";
+            }
+            if(price>4000){
+                document.getElementById("error").innerHTML="You are entering more than room price ";
+                document.getElementById("form").style.display="none";
+
+            }
+            else{
+                
+            }
+            
+
+            //pending Amount
+            var totalprice=4000-price;
+
+            //Details Box
+            document.getElementById("lblperson").innerHTML = name;
+            document.getElementById("lblcheckin").innerHTML = indate;
+            document.getElementById("lblcheckout").innerHTML = outdate;
+            document.getElementById("lblpeaple").innerHTML = peaple;
+            document.getElementById("lblamount").innerHTML=price;
+            document.getElementById("lblrestamount").innerHTML=totalprice;
+            
+            //room type logic
+            if(room1.checked==true){
+                document.getElementById("lbltype").innerHTML="Delux";
+                document.getElementById("check2").style.display="none";
+            }
+            if(room2.checked==true){
+                document.getElementById("lbltype").innerHTML="Suite";
+                document.getElementById("check2").style.display="none";
+            }
+            else{
+                document.getElementById("check2").innerHTML="Please select a room type";
+                document.getElementById("check2").style.display="block";
+                document.getElementById("form").style.display="none";
+            }
+
+            var ac=document.getElementById("amt1");
+            var locker=document.getElementById("amt2");
+
+            //aminity logic
+
+            if(ac.checked==true){
+                document.getElementById("lblaminity").innerHTML="AC";
+                document.getElementById("err1").style.display="none";
+            }
+            if(locker.checked==true){
+                document.getElementById("lblaminity").innerHTML="Locker";
+                document.getElementById("err1").style.display="none";
+            }
+            else{
+                document.getElementById("err1").innerHTML="Please select aminity";
+                 
+            }
+        
+
+
+        } 
+    </script>
+    <style>
+        .pic img{
+            width: 250px;
+        }
+        .brd{
+            border:1px solid black;
+        }
+        .amt{
+            margin-left: 450px;
+        }
+        #form{
+           display:none;
+        }
+        
+    </style>
+</head>
+<body class="container-fluid" onload="bodyload()">
+    <div class="m-4">
+        <div class="header text-center bg-info" style="border:1px solid black">
+            <h1>Hotel Registration Form</h1>
+        </div>
+        <div class="bg-dark text-white text-center mt-2">
+            <h2>Customer Info</h2>
+        </div>
+        <div style="border:1px solid black" class="d-flex">
+            <div class="text-center" style="width:700px">
+                <h4>Customer Name:</h4>
+                <h4>Check in Date:</h4>
+                <h4>Check Out Date:</h4>
+                <h4>Total No Of Person:</h4>
+            </div>
+            <div class="m-2 text-center" style="width:800px">
+                <div class="m-2"><input type="text" id="person" style="width:300px"></div>
+                <div class="m-2"><input type="date" id="checkin" style="width:300px"></div>
+                <div class="m-2"><input type="date" id="checkout" style="width:300px"></div>
+                <div class="m-2"><input type="number" id="peaple" style="width:300px"></div>
+            </div>
+        </div>
+        <div class="bg-dark text-white text-center mt-2">
+            <h2>Select Room Type</h2>
+        </div>
+
+        <!--Room type-->
+        <div class="d-flex mt-2 brd" style="width:1px solid black">
+            <div class="text-center m-4" style="width:700px">
+                <div><img src="images/delux.jpg"></div>
+                <div><b>Delux Room:</b><input type="checkbox" id="deluxroom" style="width:80px"><span id="check1"></span></div>
+            </div>
+            <div class="text-center m-4" style="width:700px">
+                <div><img src="images/suite.jpg"></div>
+                <div><b>Suite Room:</b><input type="checkbox" id="suiteroom" style="width:80px"><span id="check2" class="text-danger"></span></div>
+            </div>
+        </div>
+        <div class="bg-dark text-white mt-2 text-center">
+            <h3 class="p-1">Select Aminities</h3>
+        </div>
+
+        <!--Aminities-->
+        <div class="d-flex mt-2" style="border:1px solid black">
+            <div class="text-center m-4" style="width:700px">
+                <div><img src="images/ac.jpg"></div>
+                <div><b>AC :</b><input type="checkbox" style="width:80px" id="amt1"><span id="err2" class="text-danger"></span></div>
+            </div>
+            <div class="text-center m-4" style="width:700px">
+                <div class="pic"><img src="images/locker.jpg" style="height:150px"></div>
+                <div><b>Locker:</b><input type="checkbox" style="width:80px" id="amt2"><span id="err1" class="text-danger"></span></div>
+            </div>
+        </div>
+        <!--Advance Amount-->
+        <div class="text-center mt-2" style="border:1px solid black">
+             <div class="d-flex amt">
+                <div><h3>Advance Amount:</h3></div>
+                <div class="text"><input type="text" id="amount" class="m-2"></div><span id="error" class="text-danger mt-2"></span>
+             </div>
+        </div>
+        <!--Register Button-->
+        <div class="text-center mt-4"><button class="btn btn-primary" id="register" onclick="registerClick()">Register</button></div>
+        <!--detail box-->
+        <div class="text-center mt-2" id="form" style="border:1px solid black" >
+            <h3 class="p-1" style="border:2px solid yellow">Register Details</h3>
+            <div id="lbldetails">
+                <h3>Name : <span id="lblperson"></span></h3>
+                <h3>Check In Date : <span id="lblcheckin"></span></h3>
+                <h3>Check Out Date : <span id="lblcheckout"></span></h3>
+                <h3>Room type : <span id="lbltype"></span></h3>
+                <h3>Aminity type : <span id="lblaminity"></span></h3>
+                <h3>Total paid : <span id="lblamount"></span></h3>
+                <h3>Amount Pending : <span id="lblrestamount"></span></h3>
+                <h3>Number Of Peaple : <span id="lblpeaple"></span></h3>
+        
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
